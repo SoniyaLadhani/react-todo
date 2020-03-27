@@ -5,7 +5,7 @@ const btnStyle = {
     background: '#ff0000',
     color: '#fff',
     border: 'none',
-    padding: '8px 10px',
+    padding: '5px 10px',
     borderRadius: '50%',
     cursor: 'pointer',
     float: 'right'
@@ -17,6 +17,7 @@ export class TodoItem extends Component {
       background: "#f4f4f4",
       padding: "10px",
       borderBottom: "1px #ccc dotted",
+      margin: '0 24rem',
       textDecoration: this.props.todo.completed ? "line-through" : "none"
     };
   };

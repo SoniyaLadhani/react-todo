@@ -5,6 +5,7 @@ import Header from "./components/layout/Header";
 import Todos from "./components/Todos";
 import AddTodo from "./components/AddTodo";
 import About from './components/pages/About';
+import TodoActions from './components/TodoActions';
 import axios from 'axios';
 
 class App extends Component {
@@ -13,7 +14,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
+    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=5')
       .then(res => this.setState({todos: res.data }));
   }
 
@@ -54,6 +55,17 @@ class App extends Component {
     
   };
 
+  displayCompleted = () => {
+    this.setState({
+      todos: [...this.state.todos.filter(todo => todo.completed)]
+    })
+  }
+
+  displayAll = () => {
+    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=5')
+      .then(res => this.setState({todos: res.data }));
+  }
+
   render() {
     return (
       <Router>
@@ -67,6 +79,7 @@ class App extends Component {
               render={props => (
                 <React.Fragment>
                   <AddTodo addTodo={this.addTodo} />
+                  <TodoActions displayCompleted={this.displayCompleted} displayAll={this.displayAll} />
                   <Todos
                     todos={this.state.todos}
                     markComplete={this.markComplete}
